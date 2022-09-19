@@ -56,7 +56,7 @@ function Create() {
       return false;
     }
     if (parseInt(expirationYear) === '' || parseInt(expirationYear) < 22) {
-      alert('Please enter expiry year correctly.');
+      alert('Please enter expiration year correctly.');
       return false;
     }
     if (
@@ -64,7 +64,7 @@ function Create() {
       parseInt(expirationMonth) < 1 ||
       parseInt(expirationMonth) > 12
     ) {
-      alert('Please enter expiry month correctly.');
+      alert('Please enter expiration month correctly.');
       return false;
     }
     if (parseInt(firstSix) === '') {
@@ -178,7 +178,7 @@ function Create() {
                 />
               </div>
               <div className="mt-0">
-                <p className="font-medium">Expiry Year</p>
+                <p className="font-medium">Expiration Year</p>
                 <input
                   type={'text'}
                   name="expirationYear"
@@ -190,7 +190,7 @@ function Create() {
                 />
               </div>
               <div className="mt-0">
-                <p className="font-medium">Expiry Month</p>
+                <p className="font-medium">Expiration Month</p>
                 <input
                   type={'text'}
                   name="expirationMonth"
