@@ -178,24 +178,24 @@ function Create() {
                 />
               </div>
               <div className="mt-0">
-                <p className="font-medium">Expiration Year</p>
-                <input
-                  type={'text'}
-                  name="expirationYear"
-                  value={expirationYear}
-                  placeholder="YY"
-                  maxLength={2}
-                  onChange={onChange}
-                  className="border border-[#5C6BC0] px-4 py-2 w-full rounded shadow-sm mt-2"
-                />
-              </div>
-              <div className="mt-0">
                 <p className="font-medium">Expiration Month</p>
                 <input
                   type={'text'}
                   name="expirationMonth"
                   value={expirationMonth}
                   placeholder="MM"
+                  maxLength={2}
+                  onChange={onChange}
+                  className="border border-[#5C6BC0] px-4 py-2 w-full rounded shadow-sm mt-2"
+                />
+              </div>
+              <div className="mt-0">
+                <p className="font-medium">Expiration Year</p>
+                <input
+                  type={'text'}
+                  name="expirationYear"
+                  value={expirationYear}
+                  placeholder="YY"
                   maxLength={2}
                   onChange={onChange}
                   className="border border-[#5C6BC0] px-4 py-2 w-full rounded shadow-sm mt-2"
