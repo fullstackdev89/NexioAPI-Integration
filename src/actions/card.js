@@ -13,7 +13,6 @@ import { CREATE_CARD, CARD_ERROR, GET_CARDS, DELETE_CARD } from './types';
 // Get current users profile
 export const createCard = (formData) => async (dispatch) => {
   try {
-    console.log('asfa', formData);
     const res = await api.post('/v1/nexio/card/saveCard', formData);
 
     dispatch({
@@ -27,7 +26,7 @@ export const createCard = (formData) => async (dispatch) => {
     return true;
   } catch (err) {
     console.log(err);
-    // alert(err.response.data.body);
+    alert('Something wrong. Please try again.');
     const errors = err.response.data.errors;
     if (errors.length > 0) {
       alert(errors[0]);

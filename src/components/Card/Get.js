@@ -55,8 +55,8 @@ function Create() {
                 <th>Holder Name</th>
                 <th>Expiration Month</th>
                 <th>Expiration Year</th>
-                <th>Security Code</th>
                 <th>Card Type</th>
+                <th>Security Code</th>
                 <th>Action</th>
               </tr>
             </thead>

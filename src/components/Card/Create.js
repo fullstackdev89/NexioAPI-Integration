@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 // import { setAlert } from '../../../actions/alert';
-import { createCard } from '../../actions/card';
+import api from '../../utils/api';
 
 function Create() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     cardHolderName: '',
@@ -15,8 +13,8 @@ function Create() {
     encryptedNumber: '',
     expirationMonth: '',
     expirationYear: '',
-    // firstSix: '',
-    // lastFour: '',
+    firstSix: '',
+    lastFour: '',
     securityCode: ''
   });
 
@@ -27,8 +25,8 @@ function Create() {
     encryptedNumber,
     expirationMonth,
     expirationYear,
-    // firstSix,
-    // lastFour,
+    firstSix,
+    lastFour,
     securityCode
   } = formData;
 
@@ -38,23 +36,45 @@ function Create() {
     e.preventDefault();
     setLoading(true);
 
-    const res = await dispatch(
-      createCard({
+    try {
+      const res = await api.post('/v1/nexio/card/saveCard', {
         cardHolderName,
         cardType,
         cardUUID,
         encryptedNumber,
         expirationMonth,
         expirationYear,
-        // firstSix,
-        // lastFour,
+        firstSix,
+        lastFour,
         securityCode
-      })
-    );
+      });
 
-    setLoading(false);
-    if (res) {
-      navigate('/card/get');
+      setLoading(false);
+
+      if (res) {
+        navigate('/card/get');
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 302) {
+        alert(error.response.data.body);
+      } else if (error.response.status === 400) {
+        if (error.response.data) {
+          let alertStr = '';
+          for (let i = 0; i < error.response.data.errors.length; i++) {
+            alertStr += error.response.data.errors[i] + '\n';
+          }
+          alert(alertStr);
+        } else {
+          alert('Please check UUID.');
+        }
+      } else if (error.response.status === 500) {
+        alert('Please check Encrypt Key.');
+      } else {
+        alert('Something wrong. Please try again.');
+      }
+
+      setLoading(false);
     }
   };
 
@@ -135,7 +155,7 @@ function Create() {
                   className="border border-[#5C6BC0] px-4 py-2 w-full rounded shadow-sm mt-2"
                 />
               </div>
-              {/* <div className="mt-0">
+              <div className="mt-0">
                 <p className="font-medium">First Six</p>
                 <input
                   type={'text'}
@@ -154,7 +174,7 @@ function Create() {
                   onChange={onChange}
                   className="border border-[#5C6BC0] px-4 py-2 w-full rounded shadow-sm mt-2"
                 />
-              </div> */}
+              </div>
               <div className="mt-0">
                 <p className="font-medium">Security code</p>
                 <input
