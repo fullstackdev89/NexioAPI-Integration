@@ -89,7 +89,7 @@ export const voidTransaction = (transactionId) => async (dispatch) => {
     });
 
     console.log(res);
-    alert(res.data.body);
+    alert(res.data);
   } catch (err) {
     console.log(err);
     alert(err.response.data);

@@ -23,11 +23,12 @@ function Create() {
     try {
       console.log(transactionId);
       await dispatch(voidTransaction(transactionId));
-      // await getTransactionsData();
+      await getTransactionsData();
     } catch (error) {
       alert('Something Wrong.');
     }
   }
+
   async function refundTransactionData(transactionId) {
     try {
       console.log(transactionId);
@@ -55,7 +56,7 @@ function Create() {
           </Link>
         </div>
 
-        <div className="mt-5 m-auto">
+        <div className="mt-5 mb-20 m-auto">
           <table className="table">
             <thead>
               <tr>
