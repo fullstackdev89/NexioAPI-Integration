@@ -34,6 +34,52 @@ function Create() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (parseInt(cardHolderName) === '') {
+      alert('Please enter Card Holder Name correctly.');
+      return false;
+    }
+    if (parseInt(cardType) === '') {
+      alert('Please enter Card Type Name correctly.');
+      return false;
+    }
+    if (parseInt(cardUUID) === '') {
+      alert('Please enter Card UUID Name correctly.');
+      return false;
+    }
+    if (parseInt(encryptedNumber) === '') {
+      alert('Please enter Encrypted Number correctly.');
+      return false;
+    }
+    if (parseInt(expirationMonth) === '') {
+      alert('Please enter Expiration Month correctly.');
+      return false;
+    }
+    if (parseInt(expirationYear) === '' || parseInt(expirationYear) < 22) {
+      alert('Please enter expiry year correctly.');
+      return false;
+    }
+    if (
+      parseInt(expirationMonth) === '' ||
+      parseInt(expirationMonth) < 1 ||
+      parseInt(expirationMonth) > 12
+    ) {
+      alert('Please enter expiry month correctly.');
+      return false;
+    }
+    if (parseInt(firstSix) === '') {
+      alert('Please enter Fixst Six correctly.');
+      return false;
+    }
+    if (parseInt(lastFour) === '') {
+      alert('Please enter Last Four correctly.');
+      return false;
+    }
+    if (parseInt(securityCode) === '') {
+      alert('Please enter Security Code correctly.');
+      return false;
+    }
+
     setLoading(true);
 
     try {

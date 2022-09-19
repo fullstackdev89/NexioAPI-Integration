@@ -33,15 +33,19 @@ export const createTransaction = (UUID, formData) => async (dispatch) => {
   } catch (err) {
     console.log(err);
 
-    const errors = err.response.data.errors;
-    if (errors.length > 0) {
-      alert(errors[0]);
-    }
+    if (err.response.status === 403) {
+      alert(err.response.data);
+    } else {
+      const errors = err.response.data.errors;
+      if (errors.length > 0) {
+        alert(errors[0]);
+      }
 
-    dispatch({
-      type: TRANSACTION_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status }
-    });
+      dispatch({
+        type: TRANSACTION_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
 
     return false;
   }

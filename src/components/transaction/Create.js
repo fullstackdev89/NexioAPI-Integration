@@ -20,6 +20,11 @@ function Create() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (!parseFloat(amount) || parseFloat(amount) < 0) {
+      alert('Please input amount correclty.');
+      return false;
+    }
     setLoading(true);
 
     const res = await dispatch(
